@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Madura Jaya — E-Commerce Demo</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">
+        <div class="logo-mark">MJ</div>
+        <div class="logo-text">Madura Jaya</div>
+      </div>
+      <nav class="nav">
+        <button class="nav-btn" data-section="home">Beranda</button>
+        <button class="nav-btn" data-section="products">Produk</button>
+        <button class="nav-btn" data-section="cart">Keranjang <span id="cart-count" class="badge">0</span></button>
+        <button class="nav-btn" data-section="contact">Kontak</button>
+      </nav>
+      <div class="header-actions">
+        <input id="search-input" placeholder="Cari produk..." />
+        <button id="checkout-shortcut" class="primary-btn">Checkout</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero / Beranda -->
+    <section id="home" class="section container active">
+      <div class="hero">
+        <div class="hero-left">
+          <h1>Belanja Cepat, Harga Bersahabat</h1>
+          <p>Promo minggu ini — diskon sampai 30% untuk produk pilihanku. Gratis ongkir untuk wilayah tertentu.</p>
+          <div class="hero-ctas">
+            <button class="primary-btn" data-section="products">Belanja Sekarang</button>
+            <a class="ghost-btn" href="#contact">Hubungi Kami</a>
+          </div>
+        </div>
+        <div class="hero-right">
+          <div class="hero-card">
+            <img src="https://picsum.photos/420/300?random=1" alt="promo" />
+          </div>
+        </div>
+      </div>
+
+      <div class="features">
+        <div class="feature">
+          <h3>Pengiriman Cepat</h3>
+          <p>Proses packing dalam 1x24 jam.</p>
+        </div>
+        <div class="feature">
+          <h3>Metode Pembayaran Modern</h3>
+          <p>QRIS, Transfer, dan Virtual Account.</p>
+        </div>
+        <div class="feature">
+          <h3>Dukungan WhatsApp</h3>
+          <p>Chat langsung untuk bantuan cepat.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products -->
+    <section id="products" class="section container">
+      <h2 class="section-title">Produk Populer</h2>
+      <div id="products-grid" class="grid"></div>
+    </section>
+
+    <!-- Cart -->
+    <section id="cart" class="section container">
+      <h2 class="section-title">Keranjang</h2>
+      <div id="cart-area" class="cart-area">
+        <p class="muted">Keranjang kosong — tambahkan produk dari halaman produk.</p>
+      </div>
+      <div class="cart-actions">
+        <button id="continue-shopping" class="ghost-btn">Lanjut Belanja</button>
+        <button id="go-checkout" class="primary-btn">Lanjut ke Pembayaran</button>
+      </div>
+    </section>
+
+    <!-- Checkout -->
+    <section id="checkout" class="section container">
+      <h2 class="section-title">Pembayaran</h2>
+      <div class="checkout-grid">
+        <div class="checkout-left">
+          <h3>Ringkasan Pesanan</h3>
+          <div id="checkout-items" class="checkout-items"></div>
+          <div class="total-row">
+            <span>Total</span>
+            <strong id="checkout-total">Rp 0</strong>
+          </div>
+        </div>
+        <div class="checkout-right">
+          <h3>Detail & Metode Pembayaran</h3>
+          <form id="checkout-form" class="checkout-form">
+            <label>Nama Penerima
+              <input name="name" required />
+            </label>
+            <label>Nomor Telepon (WhatsApp)
+              <input name="phone" required placeholder="08xx..." />
+            </label>
+            <label>Alamat Pengiriman
+              <textarea name="address" rows="3" required></textarea>
+            </label>
+
+            <fieldset class="payment-methods">
+              <legend>Pilih Metode Pembayaran</legend>
+              <label><input type="radio" name="payment" value="qris" checked /> QRIS</label>
+              <label><input type="radio" name="payment" value="transfer" /> Transfer Bank</label>
+              <label><input type="radio" name="payment" value="cod" /> Cash on Delivery</label>
+            </fieldset>
+
+            <div class="form-actions">
+              <button type="submit" class="primary-btn">Bayar Sekarang</button>
+              <button type="button" id="back-to-cart" class="ghost-btn">Kembali ke Keranjang</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section container">
+      <h2 class="section-title">Kontak Kami</h2>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3>Butuh Bantuan?</h3>
+          <p>Chat langsung via WhatsApp untuk order atau tanya produk.</p>
+          <a id="wa-link" class="primary-btn" href="#" target="_blank" rel="noopener">Chat WhatsApp</a>
+        </div>
+        <div class="contact-card">
+          <h3>Alamat</h3>
+          <p>Jl. Contoh No. 12, Kota, Indonesia</p>
+          <p>Email: kiieuphoria23@gmail.com</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Product Detail Modal -->
+  <div id="product-modal" class="modal hidden" aria-hidden="true">
+    <div class="modal-panel">
+      <button id="modal-close" class="modal-close">×</button>
+      <div class="modal-content">
+        <img id="modal-img" src="" alt="" />
+        <div class="modal-info">
+          <h3 id="modal-title"></h3>
+          <p id="modal-desc"></p>
+          <div class="price" id="modal-price"></div>
+          <div class="modal-actions">
+            <input id="modal-qty" type="number" min="1" value="1" />
+            <button id="modal-add" class="primary-btn">Tambah ke Keranjang</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div>© <span id="year"></span> Madura Jaya — E-Commerce </div>
+      <div>Designed with ♥ — by iki gamntenk</div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
